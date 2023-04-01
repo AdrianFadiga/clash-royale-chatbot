@@ -1,0 +1,11 @@
+{
+  "name": "clash-royale-chatbot",
+  "version": "1.0.0",
+  "description": "Chatbot para auxiliar o clã a verificar os players inativos",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "",
+  "license": "ISC"
+}
