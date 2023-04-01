@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "description": "Chatbot para auxiliar o clã a verificar os players inativos",
   "main": "index.js",
+  "dependencies": {
+    "@prisma/client": "^4.10.1",
+    "axios": "^1.3.4",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.2",
+    "prisma": "^4.10.1"
+  },
   "scripts": {
     "test": "npm test"
   },
