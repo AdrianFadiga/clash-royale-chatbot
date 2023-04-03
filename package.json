@@ -10,8 +10,13 @@
     "node-cron": "^3.0.2",
     "prisma": "^4.10.1"
   },
+  "devDependencies": {
+    "eslint": "^8.34.0",
+    "nodemon": "^2.0.20"
+  },
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "dev": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC"
