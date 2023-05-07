@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Player {
+  tag  String @unique
+  clan_tag String
+  name String
+  role String
+  lastSeen String
+  createdAt DateTime
+  updatedAt DateTime
+
+  @@map("players")
+}
+
+model RiverRaceParticipant {
+  tag String @unique
+  clan_tag String
+  name String
+  fame Int
+  decksUsed Int
+  decksUsedToday Int
+  createdAt DateTime
+  updatedAt DateTime
+
+  @@map("river_race_participants")
+}
