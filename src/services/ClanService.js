@@ -1,14 +1,16 @@
-const { getClanMembers, getCurrentRiverRace } = require("../requests");
+const { royaleApi } = require("../requests");
 
 const ClanService = {
-	async currentWarStatus(clanId, Authorization) {
-		const clanMembers = await getClanMembers(`%23${clanId}`, Authorization);
+	async currentWarStatus() {
+		const clanMembers = await royaleApi.getClanInfo();
+
+		// return clanMembers;
     
-		const clanMembersNames = clanMembers.map(({name}) => name);
+		const clanMembersNames = clanMembers.memberList.map(({name}) => name);
 
-		const currentRiverRace = await getCurrentRiverRace(`%23${clanId}`, Authorization);
-
-		const missingAttacks = currentRiverRace.reduce((acc, curr) => {
+		const currentRiverRace = await royaleApi.getCurrentRiverRace();
+		
+		const missingAttacks = currentRiverRace.participants.reduce((acc, curr) => {
 			if (clanMembersNames.includes(curr.name) && curr.decksUsedToday < 4) {
 				acc.push({name: curr.name, missingBattles: (4 - curr.decksUsedToday)});
 				return acc;
