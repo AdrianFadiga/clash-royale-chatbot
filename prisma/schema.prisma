@@ -8,26 +8,27 @@ datasource db {
 }
 
 model Player {
-  tag  String @unique
-  clan_tag String
-  name String
-  role String
-  lastSeen String
-  createdAt DateTime
-  updatedAt DateTime
+  tag       String   @unique
+  clanTag  String
+  name      String
+  role      String
+  lastSeen  String
+  createdAt DateTime @default(now())
 
   @@map("players")
 }
 
 model RiverRaceParticipant {
-  tag String @unique
-  clan_tag String
-  name String
-  fame Int
-  decksUsed Int
+  tag            String   @unique
+  clanTag       String
+  name           String
+  fame           Int
+  decksUsed      Int
   decksUsedToday Int
-  createdAt DateTime
-  updatedAt DateTime
+  missingAttacks Int
+  isInClan Boolean @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now())
 
   @@map("river_race_participants")
 }
