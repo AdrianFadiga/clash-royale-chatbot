@@ -3,18 +3,10 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const RiverRaceParticipantRepository = {
-	async upsertMany(participants) {
+	async createMany(participants) {
 
-		participants.forEach(async (participant) => {
-			await prisma.RiverRaceParticipant.upsert({
-				where: {
-					tag: participant.tag
-				},
-				update: {...participant, 
-					updatedAt: new Date(),
-				},
-				create: {...participant},
-			});
+		await prisma.RiverRaceParticipant.createMany({
+			data: participants
 		});
 	}
 };
