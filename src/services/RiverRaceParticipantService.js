@@ -1,14 +1,15 @@
+const { generateDateRef } = require("../helpers");
 const { RiverRaceParticipantRepository } = require("../repositories");
-const { PlayerService } = require("./PlayerService");
 const { royaleApi } = require("../requests");
+const PlayerService = require("./PlayerService");
 
 const RiverRaceParticipantService = {
-	async updateParticipants() {
+	async createMany() {
 		const currentRiverRace = await royaleApi.getCurrentRiverRace();
 
 		const serializedParticipants = await serialize(currentRiverRace);
 
-		await RiverRaceParticipantRepository.upsertMany(serializedParticipants);
+		await RiverRaceParticipantRepository.createMany(serializedParticipants);
 	}
 };
 
@@ -20,9 +21,8 @@ async function serialize(currentRiverRace) {
 		clanTag: currentRiverRace.tag,
 		missingAttacks: 4 - decksUsedToday,
 		isInClan: clanMembersTags.includes(tag),
+		dateRef: generateDateRef()
 	}));
 }
 
-RiverRaceParticipantService.updateParticipants();
-
-module.exports = {RiverRaceParticipantService};
+module.exports = RiverRaceParticipantService;
