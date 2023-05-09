@@ -3,6 +3,10 @@ const router = require("./routes");
 const app = express();
 require("dotenv").config();
 
+const scheduler = require("./scheduler");
+
+scheduler();
+
 const port = process.env.PORT;
 
 app.use("/", router);
