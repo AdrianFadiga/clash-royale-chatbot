@@ -19,7 +19,8 @@ model Player {
 }
 
 model RiverRaceParticipant {
-  tag            String   @unique
+  id String @id @default(uuid())
+  tag            String
   clanTag       String
   name           String
   fame           Int
@@ -27,8 +28,7 @@ model RiverRaceParticipant {
   decksUsedToday Int
   missingAttacks Int
   isInClan Boolean @default(false)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @default(now())
+  dateRef String
 
   @@map("river_race_participants")
 }

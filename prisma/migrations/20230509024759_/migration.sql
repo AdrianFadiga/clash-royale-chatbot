@@ -10,6 +10,7 @@ CREATE TABLE "players" (
 
 -- CreateTable
 CREATE TABLE "river_race_participants" (
+    "id" TEXT NOT NULL,
     "tag" TEXT NOT NULL,
     "clanTag" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -18,12 +19,10 @@ CREATE TABLE "river_race_participants" (
     "decksUsedToday" INTEGER NOT NULL,
     "missingAttacks" INTEGER NOT NULL,
     "isInClan" BOOLEAN NOT NULL DEFAULT false,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "dateRef" TEXT NOT NULL,
+
+    CONSTRAINT "river_race_participants_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "players_tag_key" ON "players"("tag");
-
--- CreateIndex
-CREATE UNIQUE INDEX "river_race_participants_tag_key" ON "river_race_participants"("tag");
