@@ -1,4 +1,4 @@
-const ClanService = require("./ClanService");
+const RiverRaceParticipantService = require("./RiverRaceParticipantService");
 const PlayerService = require("./PlayerService");
 
-module.exports = {ClanService, PlayerService};
+module.exports = {RiverRaceParticipantService, PlayerService};

@@ -17,6 +17,7 @@ const PlayerService = {
 
 		return updatedClanMembers;
 	},
+
 };
 
 function serialize(clanInfo) {
@@ -25,4 +26,4 @@ function serialize(clanInfo) {
 	}));
 }
 
-module.exports = {PlayerService};
+module.exports = PlayerService;
