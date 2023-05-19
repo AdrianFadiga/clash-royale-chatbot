@@ -1,5 +1,9 @@
 const cron = require("node-cron");
-const { extractRiverRaceParticipants, updateClanMembers, serverLogJob } = require("../jobs");
+const { 
+	extractRiverRaceParticipants, 
+	updateClanMembers, 
+	serverLogJob, 
+	sendCurrentWarStatusMessageJob } = require("../jobs");
 
 function scheduler() {
 	// Atualiza a table river_race_participants com as informações do dia
@@ -15,6 +19,11 @@ function scheduler() {
 	// Cria log do horário atual no BD
 	cron.schedule("30 * * * *", () => {
 		serverLogJob();
+	});
+	
+	// Manda mensagem via telegram do status da guerra
+	cron.schedule("0 16-23,0-6 * * *", () => {
+		sendCurrentWarStatusMessageJob();
 	});
 }
 
