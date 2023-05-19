@@ -33,3 +33,10 @@ model RiverRaceParticipant {
 
   @@map("river_race_participants")
 }
+
+model ServerLog {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  @@map("server_logs")
+}
