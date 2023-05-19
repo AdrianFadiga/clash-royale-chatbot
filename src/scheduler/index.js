@@ -7,12 +7,12 @@ const {
 
 function scheduler() {
 	// Atualiza a table river_race_participants com as informações do dia
-	cron.schedule("0 6 * * *", () => {
+	cron.schedule("0 6 * * 4-1", () => {
 		extractRiverRaceParticipants();
 	});
 
 	// Atualiza a table players com os players no clã
-	cron.schedule("30 5 * * *", () => {
+	cron.schedule("30 5 * * 4-1", () => {
 		updateClanMembers();
 	});
 
@@ -22,7 +22,7 @@ function scheduler() {
 	});
 	
 	// Manda mensagem via telegram do status da guerra
-	cron.schedule("0 16-23,0-6 * * *", () => {
+	cron.schedule("0 16-23,0-6 * * 4-1", () => {
 		sendCurrentWarStatusMessageJob();
 	});
 }
