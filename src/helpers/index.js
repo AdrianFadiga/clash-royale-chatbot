@@ -1,3 +1,4 @@
 const generateDateRef = require("./generateDateRef");
+const getLastDays = require("./getLastDays");
 
-module.exports = {generateDateRef};
+module.exports = {generateDateRef, getLastDays};
