@@ -28,8 +28,7 @@ model RiverRaceParticipant {
   decksUsed      Int
   decksUsedToday Int
   missingAttacks Int
-  isInClan Boolean @default(false)
-  dateRef String
+  dateRef DateTime @default(now())
 
   @@map("river_race_participants")
 }
