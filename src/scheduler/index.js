@@ -1,31 +1,9 @@
-const cron = require("node-cron");
-const { 
-	extractRiverRaceParticipants, 
-	updateClanMembers, 
-	serverLogJob, 
-	sendCurrentWarStatusMessageJob } = require("../jobs");
+const coreScheduler = require("./coreScheduler");
+const chatbotScheduler = require("./chatbotScheduler");
 
 function scheduler() {
-	// Atualiza a table river_race_participants com as informações do dia
-	console.log("Inicializando schedulers.........");
-	cron.schedule("0 6 * * 4,5,6,7,1", () => {
-		extractRiverRaceParticipants();
-	});
-
-	// Atualiza a table players com os players no clã
-	cron.schedule("30 5 * * 4,5,6,7,1", () => {
-		updateClanMembers();
-	});
-
-	// Cria log do horário atual no BD
-	cron.schedule("0,30 * * * *", () => {
-		serverLogJob();
-	});
-	
-	// Manda mensagem via telegram do status da guerra
-	cron.schedule("0 16-23,0-6 * * 4,5,6,7,1", () => {
-		sendCurrentWarStatusMessageJob();
-	});
+	coreScheduler();
+	chatbotScheduler();
 }
 
-module.exports = scheduler;
+module.exports = scheduler();
