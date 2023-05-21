@@ -1,5 +1,6 @@
 const { RiverRaceParticipantRepository } = require("../repositories");
 const { royaleApi } = require("../requests");
+const PlayerService = require("./PlayerService");
 
 const RiverRaceParticipantService = {
 	async createMany() {
@@ -8,7 +9,12 @@ const RiverRaceParticipantService = {
 		const serializedParticipants = await serialize(currentRiverRace);
 
 		await RiverRaceParticipantRepository.createMany(serializedParticipants);
-	}
+	},
+
+	async lastWarReport() {
+		const playersTags = await PlayerService.getAllTags();
+		const lastWarReport = await RiverRaceParticipantRepository.lastWarReport(playersTags);
+		return lastWarReport.map(({name, tag, _sum: {missingAttacks}, _max: {fame, decksUsed}}) => ({name, tag, missingAttacks, fame, decksUsed}));},
 };
 
 async function serialize(currentRiverRace) {
